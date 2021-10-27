@@ -18,6 +18,7 @@ const days = [
     spots: 0,
   },
 ];
+
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
   return (
