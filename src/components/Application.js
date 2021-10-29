@@ -5,7 +5,7 @@ import "components/Application.scss";
 
 import DayList from "./DayList";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 // const appointments = [
 //   {
 //     id: 1,
@@ -50,21 +50,37 @@ export default function Application(props) {
     day: "Monday",
     days: [],
     appointments: {},
+    interviewers: {},
   });
 
   const setDay = (day) => setState({ ...state, day });
   const dailyAppointments = getAppointmentsForDay(state, state.day);
+  // console.log(state.interviewers);
+  const schedule = dailyAppointments.map((appointment) => {
+    const interview = getInterview(state, appointment.interview);
 
-  useEffect(() => {
-    Promise.all([axios.get("/api/days"), axios.get("/api/appointments")]).then(
-      (response) => {
-        setState((prev) => ({
-          ...prev,
-          days: response[0].data,
-          appointments: response[1].data,
-        }));
-      }
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
     );
+  });
+  useEffect(() => {
+    Promise.all([
+      axios.get("/api/days"),
+      axios.get("/api/appointments"),
+      axios.get("/api/interviewers"),
+    ]).then((response) => {
+      setState((prev) => ({
+        ...prev,
+        days: response[0].data,
+        appointments: response[1].data,
+        interviewers: response[2].data,
+      }));
+    });
   }, []);
 
   return (
@@ -85,11 +101,7 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">
-        {dailyAppointments.map((appointment) => {
-          return <Appointment key={appointment.id} {...appointment} />;
-        })}
-      </section>
+      <section className="schedule">{schedule}</section>
     </main>
   );
 }
