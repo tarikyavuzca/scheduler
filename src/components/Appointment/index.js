@@ -40,7 +40,7 @@ export default function Appointment(props) {
   }
 
   function deleteAppointment() {
-    transition(DELETE);
+    transition(DELETE, true);
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
@@ -98,7 +98,7 @@ export default function Appointment(props) {
       )}
 
       {mode === DELETE && <Status message="DELETING..." />}
-      {mode === SAVING && <Status message="Saving" />}
+      {mode === SAVING && <Status message="SAVING" />}
     </article>
   );
 }
