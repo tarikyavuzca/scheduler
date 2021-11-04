@@ -3,11 +3,13 @@ import classNames from "classnames";
 import "components/DayListItem.scss";
 
 export default function DayListItem(props) {
+  // Using classNames to to change the apperance based on the props that passed in
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
     "day-list__item--full": props.spots === 0,
   });
 
+  //function to prompt proper message for the remaining spots
   const formatSpots = function () {
     let text;
     if (props.spots === 0) {
@@ -20,6 +22,7 @@ export default function DayListItem(props) {
     return text;
   };
 
+  //
   return (
     <li className={dayClass} onClick={props.setDay}>
       <h2 className="text--regular">{props.name}</h2>

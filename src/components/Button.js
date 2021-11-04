@@ -2,18 +2,13 @@ import React from "react";
 import classNames from "classnames";
 import "components/Button.scss";
 
+// Button component
 export default function Button(props) {
+  // Using classNames to to change the apperance based on the props that passed in
   let buttonClass = classNames("button", {
     "button--confirm": props.confirm,
     "button--danger": props.danger,
   });
-
-  //   if (props.confirm) {
-  //     buttonClass += " button--confirm";
-  //   }
-  //   if (props.danger) {
-  //     buttonClass += " button--danger";
-  //   }
 
   return (
     <button

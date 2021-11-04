@@ -2,13 +2,13 @@ import React from "react";
 import classNames from "classnames";
 
 import "components/InterviewerListItem.scss";
-// import "components/InterviewerList.scss";
 
 export default function InterviewerListItem(props) {
+  // Using classNames to to change the apperance based on the props that passed in
   let interviewClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected,
   });
-  // console.log(props);
+
   return (
     <li className={interviewClass} onClick={props.setInterviewer}>
       <img

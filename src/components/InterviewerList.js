@@ -5,9 +5,11 @@ import PropTypes from "prop-types";
 import "components/InterviewerList.scss";
 
 export default function InterviewerList(props) {
+  // determine the type of prop for testing purpose
   InterviewerList.propTypes = {
     interviewers: PropTypes.array.isRequired,
   };
+  //returning the array of interviewers
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>

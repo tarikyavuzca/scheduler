@@ -13,13 +13,14 @@ import {
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
+  //using the hook that created (hooks/useApplicationData)
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
 
+  // getting the interviewers and the appointments  for rendering in the appointment component
   const dailyInverviewers = getInterviewersForDay(state, state.day);
   const dailyAppointments = getAppointmentsForDay(state, state.day).map(
     (appointment) => {
-      // const interview = getInterview(state, appointment.interview);
       return (
         <Appointment
           key={appointment.id}
