@@ -54,3 +54,7 @@ npm run storybook
 - react
 - react-dom
 - react-scripts
+
+## NOTE:
+
+To be able to start the application on your local machine clone this repository (https://github.com/tarikyavuzca/scheduler-api) follow the instruction!!!
